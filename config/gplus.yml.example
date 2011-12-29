@@ -1,0 +1,25 @@
+# A stub config file for gplus.
+#
+# Fill in the blanks with your Google+ API credentials, and rename it to
+# gplus.yml (without the '.example' suffix).
+#
+# This file is parsed by config/initializers/gplus.rb, and its values are made
+# available in the GPLUS_CONFIG constant. For example, GPLUS_CONFIG['api_key'].
+
+development:
+  api_key: YOUR_API_KEY
+  client_id: YOUR_CLIENT_ID
+  client_secret: YOUR_CLIENT_SECRET
+  redirect_uri: YOUR_REDIRECT_URI
+
+test:
+  api_key: YOUR_API_KEY
+  client_id: YOUR_CLIENT_ID
+  client_secret: YOUR_CLIENT_SECRET
+  redirect_uri: YOUR_REDIRECT_URI
+
+production:
+  api_key: YOUR_API_KEY
+  client_id: YOUR_CLIENT_ID
+  client_secret: YOUR_CLIENT_SECRET
+  redirect_uri: YOUR_REDIRECT_URI
