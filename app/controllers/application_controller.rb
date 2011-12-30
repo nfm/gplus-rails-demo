@@ -20,5 +20,11 @@ class ApplicationController < ActionController::Base
       :client_secret => GPLUS_CONFIG['client_secret'],
       :redirect_uri => GPLUS_CONFIG['redirect_uri']
     )
+
+    # Check if the access token was implicitly refreshed
+    # If it was, store the user's new token and the time that it expires at
+    if @gplus.access_token_refreshed?
+      user.update_attributes(:token => @gplus.access_token.token, :token_expires_at => @gplus.access_token.expires_at)
+    end
   end
 end
