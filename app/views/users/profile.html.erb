@@ -1,0 +1,19 @@
+<h1><%= link_to "User #{@user.id}", @user %></h1>
+
+<p>
+  <b>My profile:</b>
+  <br />
+  <%= @profile %>
+</p>
+
+<p>
+  <b>People with the same name as me:</b>
+  <br />
+  <%= @search_results %>
+</p>
+
+<p>
+  <b>Another page of people with the same name as me:</b>
+  <br />
+  <%= @more_search_results %>
+</p>

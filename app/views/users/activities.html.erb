@@ -1,0 +1,17 @@
+<h1><%= link_to "User #{@user.id}", @user %></h1>
+
+<p>
+  <b>My activities:</b>
+  <br />
+  <%= @activities %>
+</p>
+
+<p>
+  <b>Comments on my activities:</b>
+  <%= @comments %>
+</p>
+
+<p>
+  <b>The last comment on my activities, found by id:</b>
+  <%= @last_comment %>
+</p>

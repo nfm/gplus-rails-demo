@@ -56,6 +56,13 @@ GplusRailsDemo::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
+  resources :users do
+    member do
+      get 'profile'
+      get 'activities'
+    end
+  end
+
   match 'oauth/callback' => 'oauth#callback'
 
   root :to => 'site#index'
