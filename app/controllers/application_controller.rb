@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  # Setup a Gplus::Client for making public (non-authorized) requests, or for requesting authorization to access a user's data
   def setup_gplus
     @gplus = Gplus::Client.new(
       :api_key => GPLUS_CONFIG['api_key'],
@@ -10,6 +11,7 @@ class ApplicationController < ActionController::Base
     )
   end
 
+  # Setup a Gplus::Client authorized to use the specified user's stored OAuth token
   def setup_authorized_gplus(user)
     @gplus = Gplus::Client.new(
       :token => user.token,

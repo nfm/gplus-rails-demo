@@ -63,6 +63,9 @@ GplusRailsDemo::Application.routes.draw do
     end
   end
 
+  # Add a route for use as an OAuth callback.
+  # This needs to be added as an allowed redirect_uri when configuring your Google+ application.
+  # See http://code.google.com/apis/console#access to configure this.
   match 'oauth/callback' => 'oauth#callback'
 
   root :to => 'site#index'
