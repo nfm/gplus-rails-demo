@@ -2,7 +2,7 @@
 
 [gplus](https://github.com/nfm/gplus) is a complete implementation of the Google+ API for Ruby.
 
-This repository is an example Rails 3.1 app for gplus. You can browse the source code, or clone the repository and run it locally.
+This repository is an example Rails 3.1 app for `gplus`. You can browse the source code, or clone the repository and run it locally.
 
 # Running the app locally
 
@@ -11,12 +11,12 @@ This repository is an example Rails 3.1 app for gplus. You can browse the source
         git clone git://github.com/nfm/gplus-rails-demo.git
         cd gplus-rails-demo
 
-2. Add your Google+ application's credentials to `config/gplus.yml.example`, and rename the file:
+2. Add [your Google+ application's credentials](https://code.google.com/apis/console) to `config/gplus.yml.example`, and rename the file:
 
         # Add your API key, client ID, client secret, and redirect URI to config/gplus.yml.example
         mv config/gplus.yml.example config/gplus.yml
 
-3. Migrate the database to create a minimal users table:
+3. Migrate the database to create a users table:
 
         bundle exec rake db:migrate
 
@@ -29,6 +29,10 @@ This repository is an example Rails 3.1 app for gplus. You can browse the source
 6. Navigate to [http://localhost:3000/users/1](http://localhost:3000/users/1) and view the example data retrieved from your Google+ profile
 
 # Recreating the example application's functionality
+
+If you have an existing application that you want to add `gplus` to, you can model it after this example application by completing the following steps.
+
+You should read the [gplus README](https://github.com/nfm/gplus) for more information. You might also find the [full documentation](http://rubydoc.info/github/nfm/gplus/master/frames) useful.
 
 1. Add `gplus` to your Gemfile and run `bundle install`
 
@@ -90,7 +94,7 @@ This repository is an example Rails 3.1 app for gplus. You can browse the source
           end
         end
 
-6. Generate an authorization URL and link to it in a view:
+6. Generate an authorization URL and link to it in a view. When a user clicks the link, they will be redirected to Google to authorize your app. After authorization, they will be redirected back to /oauth2/callback, where we're storing their OAuth token for persistent access to their data.
 
         # app/controllers/whatever_controller.rb
         def some_action
@@ -104,13 +108,11 @@ This repository is an example Rails 3.1 app for gplus. You can browse the source
         # so that you can access the user's Google+ profile for more than 1 hour
         <%= link_to 'Authorize this app for Google+', @gplus.authorize_url(:access_type => :offline) %>
 
-  When a user clicks the link, they will be redirected to Google to authorize your app. After authorization, they will be redirected back to /oauth2/callback, and we'll store their OAuth token for persistent to access their data.
 
 7. You can now create an authorized Google+ client and make API calls:
 
         # app/controllers/some_other_controller.rb
         def show
-          setup_gplus
-          @gplus.authorize(current_user.token, current_user.refresh_token, current_user.token_expires_at)
+          setup_authorized_gplus(current_user)
           @gplus.get_person('me')
         end
