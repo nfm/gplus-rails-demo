@@ -4,7 +4,7 @@ class OauthController < ApplicationController
   # Handle OAuth callbacks from Google+
   def callback
     # Take the short-lived :code, and use it to get a proper access_token from Google+
-    access_token = @gplus.authorize(params[:code])
+    access_token = @gplus.get_token(params[:code])
 
     # Store the access_token so that we can use it later to access the user's information
     @user = User.new(

@@ -82,7 +82,7 @@ You should read the [gplus README](https://github.com/nfm/gplus) for more inform
         class OAuth2Controller < ApplicationController
           def callback
             setup_gplus
-            access_token = @gplus_client.authorize(params[:code])
+            access_token = @gplus_client.get_token(params[:code])
 
             # You need to find or create a user here so that you can store the access_token's attributes
 
