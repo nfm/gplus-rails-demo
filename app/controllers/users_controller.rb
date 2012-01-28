@@ -24,6 +24,12 @@ class UsersController < ApplicationController
 
     # Find a specific comment
     @last_comment = @gplus.get_comment(@comments['items'].last['id'])
+
+    # List the people who +1'd the person's last activity
+    @plusoners = @gplus.list_people_by_activity(@activities['items'].last['id'], 'plusoners')
+
+    # List the people who reshared the person's last activity
+    @resharers = @gplus.list_people_by_activity(@activities['items'].last['id'], 'resharers')
   end
 
 private
